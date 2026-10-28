@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #F6F7F9;
+  --bg-alt: #ECEEF2;
+  --light-blue-bg: #F6F7F9;
+  --card-bg: #FFFFFF;
+  --primary-text: #1A1D23;
+  --secondary-text: #6B6F76;
+  --deep-navy: #1A1D23;
+  --dark-product-bg: #1A1D23;
+  --border: #D8DCE3;
+  --primary: #1A1D23;
+  --primary-hover: #0F1115;
+  --bright-blue: #1A1D23;
+  --soft-blue: #F0F1F4;
+  --success: #10B981;
+  --danger: #EF4444;
+  
+  --font-ar: 'Cairo', system-ui, -apple-system, sans-serif;
+  --font-en: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  --radius: 12px;
+  --radius-sm: 8px;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 12px rgba(130, 115, 168, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--primary-text);
+  font-family: var(--font-ar);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+
+html[lang="en"] body,
+html[lang="en"] {
+  font-family: var(--font-en);
+  direction: ltr;
+}
+
+html[lang="ar"] body,
+html[lang="ar"] {
+  direction: rtl;
+  font-family: var(--font-ar);
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 16px; /* Prevent zoom on iOS */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Safe area support */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-text);
+}
