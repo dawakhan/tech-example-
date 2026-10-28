@@ -10,6 +10,22 @@ import OrderTracking from './pages/OrderTracking';
 import AdminDashboard from './admin/AdminDashboard';
 import AdminOrders from './admin/AdminOrders';
 import AdminOrderDetail from './admin/AdminOrderDetail';
+import AdminLogin from './admin/AdminLogin';
+import { useState, useEffect } from 'react';
+
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const [isAuth, setIsAuth] = useState(false);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    const auth = localStorage.getItem('admin_auth');
+    setIsAuth(auth === 'true');
+    setLoading(false);
+  }, []);
+  
+  if (loading) return null;
+  return isAuth ? <>{children}</> : <Navigate to="/admin/login" replace />;
+}
 
 function App() {
   return (
@@ -22,10 +38,11 @@ function App() {
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/order-success" element={<OrderSuccess />} />
       <Route path="/track" element={<OrderTracking />} />
-      <Route path="/admin" element={<Navigate to="/admin/orders" replace />} />
-      <Route path="/admin/dashboard" element={<AdminDashboard />} />
-      <Route path="/admin/orders" element={<AdminOrders />} />
-      <Route path="/admin/orders/:id" element={<AdminOrderDetail />} />
+      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/admin" element={<ProtectedRoute><Navigate to="/admin/orders" replace /></ProtectedRoute>} />
+      <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+      <Route path="/admin/orders" element={<ProtectedRoute><AdminOrders /></ProtectedRoute>} />
+      <Route path="/admin/orders/:id" element={<ProtectedRoute><AdminOrderDetail /></ProtectedRoute>} />
     </Routes>
   );
 }
